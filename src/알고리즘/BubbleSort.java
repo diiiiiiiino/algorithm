@@ -1,7 +1,5 @@
 package 알고리즘;
 
-import 디자인패턴.Modeling;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
