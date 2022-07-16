@@ -1,7 +1,9 @@
 package 알고리즘;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class BubbleSort {
     public ArrayList<Integer> sort(ArrayList<Integer> dataList) {
@@ -22,4 +24,58 @@ public class BubbleSort {
 
         return dataList;
     }
+
+    public ArrayList<Integer> sort2(ArrayList<Integer> datas) {
+        for(int i = 0; i < datas.size() - 1; i++) {
+            boolean swap = false;
+
+            for(int i2 = 0; i2 < datas.size() - 1 - i; i2++) {
+                if(datas.get(i2) > datas.get(i2 + 1)) {
+                    Collections.swap(datas, i2, i2 + 1);
+                    swap = true;
+                }
+            }
+
+            if(!swap) {
+                break;
+            }
+        }
+
+        return datas;
+    }
+
+    public ArrayList<Integer> reverse(ArrayList<Integer> datas){
+        for(int i = 0; i < datas.size() - 1; i++) {
+            boolean swap = false;
+            for(int i2 = 0; i2 < datas.size() - 1 - i; i2++ ) {
+                if(datas.get(i2) < datas.get(i2 + 1)) {
+                    Collections.swap(datas, i2, i2 + 1);
+                    swap = true;
+                }
+            }
+
+            if(!swap) {
+                break;
+            }
+        }
+
+        return datas;
+    }
+
+    public static void main(String[] agrs) {
+        ArrayList<Integer> integers = new ArrayList<>();
+        integers.add(5);
+        integers.add(4);
+        integers.add(3);
+        integers.add(2);
+        integers.add(1);
+
+        BubbleSort bubbleSort = new BubbleSort();
+        var datas = bubbleSort.sort2(integers);
+        System.out.println(datas);
+
+        datas = bubbleSort.reverse(integers);
+        System.out.println(datas);
+    }
+
 }
