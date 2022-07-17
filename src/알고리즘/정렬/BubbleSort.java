@@ -1,9 +1,7 @@
-package 알고리즘;
+package 알고리즘.정렬;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class BubbleSort {
     public ArrayList<Integer> sort(ArrayList<Integer> dataList) {

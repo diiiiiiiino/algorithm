@@ -1,4 +1,4 @@
-package 알고리즘;
+package 알고리즘.정렬;
 
 import java.util.ArrayList;
 import java.util.Collections;
