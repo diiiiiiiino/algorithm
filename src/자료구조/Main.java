@@ -7,7 +7,7 @@ import java.util.Stack;
 public class Main {
     static public void main(String[] args) {
         System.out.println("================= Queue Start ================");
-        Queue<Integer> queue = new LinkedList<>();
+        /*Queue<Integer> queue = new LinkedList<>();
         queue.add(3);
         queue.add(2);
         queue.add(1);
@@ -75,7 +75,7 @@ public class Main {
         System.out.println(linkedList.insertToFront(1, 4));
         linkedList.printAll();
 
-        System.out.println("================= DoubleLinkedList End ================");
+        System.out.println("================= DoubleLinkedList End ================");*/
 
         System.out.println("================= Hash Start ================");
         MyHash mainObject = new MyHash(20);
@@ -86,7 +86,7 @@ public class Main {
 
         System.out.println(mainObject.getData("Dave"));
 
-        MyHash2 mainObject2 = new MyHash2(20);
+        MyHash2 mainObject2 = new MyHash2(10);
         mainObject2.saveData("DaveLee", "01022223333");
         mainObject2.saveData("fun-coding", "01033334444");
         mainObject2.saveData("David", "01044445555");
@@ -97,7 +97,7 @@ public class Main {
         System.out.println("================= Hash End ================");
 
 
-        MyHeap heapTest = new MyHeap(15);
+        /*MyHeap heapTest = new MyHeap(15);
         heapTest.insert(10);
         heapTest.insert(8);
         heapTest.insert(5);
@@ -117,6 +117,6 @@ public class Main {
         System.out.println(heapTest2.heapArray);
 
         heapTest2.pop();
-        System.out.println(heapTest2.heapArray);
+        System.out.println(heapTest2.heapArray);*/
     }
 }

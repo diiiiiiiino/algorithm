@@ -7,7 +7,7 @@ public class MyHash2 {
         this.hashTable = new Slot[size];
     }
 
-    public class Slot{
+    public class Slot {
         String key;
         String value;
         Slot(String key, String value){
@@ -17,16 +17,17 @@ public class MyHash2 {
     }
 
     public int hashFunc(String key){
-        return (int)(key.charAt(0)) % this.hashTable.length;
+        return 9 % this.hashTable.length;
     }
 
-    public boolean saveData(String key, String value){
+    public boolean saveData(String key, String value) {
         Integer address = this.hashFunc(key);
         if(this.hashTable[address] != null) {
             if(this.hashTable[address].key == key) {
                 this.hashTable[address].value = value;
+                return true;
             } else {
-                Integer currAddress = address + 1;
+                Integer currAddress = address;
                 while(this.hashTable[currAddress] != null) {
                     if(this.hashTable[currAddress].key == key) {
                         this.hashTable[currAddress].value = value;
@@ -38,11 +39,11 @@ public class MyHash2 {
                         }
                     }
                 }
-                this.hashTable[currAddress] = new Slot(key, value);
             }
         } else {
             this.hashTable[address] = new Slot(key, value);
         }
+
         return true;
     }
 
@@ -52,7 +53,7 @@ public class MyHash2 {
             if(this.hashTable[address].key == key) {
                 return this.hashTable[address].value;
             } else {
-                Integer currAddress = address + 1;
+                Integer currAddress = address;
                 while(this.hashTable[currAddress] != null) {
                     if(this.hashTable[currAddress].key == key) {
                         return this.hashTable[currAddress].value;

@@ -4,13 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyStack<T> {
-    private List<T> stack = new ArrayList<>();
+    private ArrayList<T> stack = new ArrayList<>();
 
-    public boolean push(T item) {
-        return stack.add(item);
+    public void push(T item) {
+        stack.add(item);
     }
 
     public T pop() {
-        return stack.isEmpty() ? null : stack.remove(stack.size() - 1);
+        if (stack.isEmpty()) {
+            return null;
+        }
+        return stack.remove(stack.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
     }
 }

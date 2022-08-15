@@ -5,9 +5,9 @@ public class DoubleLinkedList<T> {
     public Node<T> tail = null;
 
     public class Node<T> {
-        Node<T> prev;
-        Node<T> next;
         T data;
+        Node<T> prev = null;
+        Node<T> next = null;
 
         public Node(T data){
             this.data = data;
@@ -20,9 +20,10 @@ public class DoubleLinkedList<T> {
             this.tail = this.head;
         } else {
             Node<T> node = this.head;
-            while(node.next != null) {
+            while(node.next != null){
                 node = node.next;
             }
+
             node.next = new Node<>(data);
             node.next.prev = node;
             this.tail = node.next;
@@ -33,7 +34,6 @@ public class DoubleLinkedList<T> {
         if(this.head != null) {
             Node<T> node = this.head;
             System.out.println(node.data);
-
             while(node.next != null) {
                 node = node.next;
                 System.out.println(node.data);
@@ -41,63 +41,59 @@ public class DoubleLinkedList<T> {
         }
     }
 
-    public T searchFromHead(T searchData) {
-        if (this.head != null) {
-            Node<T> node = this.head;
-            while (node != null) {
-                if (node.data == searchData) {
-                    return node.data;
-                } else {
-                    node = node.next;
-                }
+    public T searchFromHead(T isData) {
+        Node<T> node = this.head;
+        while (node != null) {
+            if (node.data == isData) {
+                return node.data;
+            } else {
+                node = node.next;
             }
         }
+
         return null;
     }
 
-    public T searchFromTail(T searchData) {
-        if(this.tail != null) {
-            Node<T> node = this.tail;
-            while(node != null) {
-                if(node.data == searchData) {
-                    return node.data;
-                } else {
-                    node = node.prev;
-                }
+    public T searchFromTail(T isData) {
+        Node<T> node = this.tail;
+        while(node != null) {
+            if(node.data == isData) {
+                return node.data;
+            } else {
+                node = node.prev;
             }
         }
-
         return null;
     }
 
     public boolean insertToFront(T existedData, T addData) {
         if(this.head == null) {
-            this.head = new Node<>(addData);
+            this.head = new Node<T>(addData);
             this.tail = this.head;
             return true;
         } else if(this.head.data == existedData) {
-            Node<T> node = new Node<>(addData);
-            node.next = this.head;
-            this.head.prev = node; //구현 필요 한듯 보임
-            this.head = node;
+            Node<T> newHead = new Node<T>(addData);
+            newHead.next = this.head;
+            this.head.prev = newHead; //구현 필요 한듯 보임
+            this.head = newHead;
             return true;
-        }
-        if (this.head != null) {
+        } else {
             Node<T> node = this.head;
-            while (node != null) {
-                if (node.data == existedData) {
-                    Node<T> prevNode = node.prev;
-                    prevNode.next = new Node<>(addData);
-                    prevNode.next.next = node;
+            while(node != null) {
+                if(node.data == existedData) {
+                    Node<T> nodePrev = node.prev;
 
-                    prevNode.next.prev = prevNode;
-                    node.prev = prevNode.next;
+                    nodePrev.next = new Node<T>(addData);
+                    nodePrev.next.next = node;
 
+                    nodePrev.next.prev = nodePrev;
+                    node.prev = nodePrev.next;
                     return true;
+                } else {
+                    node = node.next;
                 }
-                node = node.next;
             }
+            return false;
         }
-        return false;
     }
 }

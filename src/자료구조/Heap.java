@@ -6,18 +6,20 @@ import java.util.Collections;
 public class Heap {
     public ArrayList<Integer> heapArray = null;
 
-    public Heap(Integer data) {
-        this.heapArray = new ArrayList<Integer>();
-        this.heapArray.add(null);
-        this.heapArray.add(data);
+    public Heap(Integer data){
+        heapArray = new ArrayList<>();
+
+        heapArray.add(null);
+        heapArray.add(data);
     }
 
-    public boolean move_up(Integer inserted_idx){
-        if(inserted_idx <= 1) {
+    public boolean moveUp(Integer insertedIdx) {
+        if(insertedIdx <= 1) {
             return false;
         }
-        Integer parent_idx = inserted_idx / 2;
-        if(this.heapArray.get(inserted_idx) > this.heapArray.get(parent_idx)) {
+
+        Integer parentIdx = insertedIdx / 2;
+        if(this.heapArray.get(insertedIdx) > this.heapArray.get(parentIdx)) {
             return true;
         } else {
             return false;
@@ -25,48 +27,51 @@ public class Heap {
     }
 
     public boolean insert(Integer data) {
-        Integer inserted_idx, parent_idx;
-        if(this.heapArray == null) {
-            this.heapArray = new ArrayList<Integer>();
-            this.heapArray.add(null);
-            this.heapArray.add(data);
+        Integer insertedIdx, parentIdx;
+
+        if(heapArray == null) {
+            heapArray = new ArrayList<>();
+
+            heapArray.add(null);
+            heapArray.add(data);
+
             return true;
         }
 
         this.heapArray.add(data);
-        inserted_idx = this.heapArray.size() - 1;
+        insertedIdx = this.heapArray.size() - 1;
 
-        while(this.move_up(inserted_idx)) {
-            parent_idx = inserted_idx / 2;
-            Collections.swap(heapArray, inserted_idx, parent_idx);
-            inserted_idx = parent_idx;
+        while(moveUp(insertedIdx)){
+            parentIdx = insertedIdx / 2;
+            Collections.swap(this.heapArray, insertedIdx, parentIdx);
+            insertedIdx = parentIdx;
         }
         return true;
     }
 
-    public boolean move_down(Integer popped_idx){
-        Integer left_child_popped_idx, right_child_popped_idx;
+    public boolean moveDown(Integer idx) {
+        Integer leftIdx, rightIdx;
 
-        left_child_popped_idx = popped_idx * 2;
-        right_child_popped_idx = popped_idx * 2 + 1;
+        leftIdx = idx * 2;
+        rightIdx = idx * 2 + 1;
 
-        if(left_child_popped_idx >= this.heapArray.size()) {
+        if(leftIdx >= this.heapArray.size()) {
             return false;
-        } else if(right_child_popped_idx >= this.heapArray.size()) {
-            if(this.heapArray.get(popped_idx) < this.heapArray.get(left_child_popped_idx)) {
+        } else if(rightIdx >= this.heapArray.size()) {
+            if(this.heapArray.get(idx) < this.heapArray.get(leftIdx)) {
                 return true;
             } else {
                 return false;
             }
         } else {
-            if(this.heapArray.get(left_child_popped_idx) > this.heapArray.get(right_child_popped_idx)) {
-                if(this.heapArray.get(popped_idx) < this.heapArray.get(left_child_popped_idx)) {
+            if(this.heapArray.get(leftIdx) > this.heapArray.get(rightIdx)) {
+                if(this.heapArray.get(idx) < this.heapArray.get(leftIdx)) {
                     return true;
                 } else {
                     return false;
                 }
             } else {
-                if(this.heapArray.get(popped_idx) < this.heapArray.get(right_child_popped_idx)) {
+                if(this.heapArray.get(idx) < this.heapArray.get(rightIdx)) {
                     return true;
                 } else {
                     return false;
@@ -76,40 +81,40 @@ public class Heap {
     }
 
     public Integer pop() {
-        Integer returned_data, popped_idx, left_child_popped_idx, right_child_popped_idx;
+        Integer returnData, idx, leftIdx, rightIdx;
 
-        if(this.heapArray.size() <= 1) {
+        if(this.heapArray == null) {
             return null;
-        }
+        } else {
+            returnData = this.heapArray.get(1);
+            this.heapArray.set(1, this.heapArray.get(this.heapArray.size() - 1));
+            this.heapArray.remove(this.heapArray.size() - 1);
+            idx = 1;
 
-        returned_data = this.heapArray.get(1);
-        this.heapArray.set(1, this.heapArray.get(this.heapArray.size() - 1));
-        this.heapArray.remove(this.heapArray.size() - 1);
-        popped_idx = 1;
+            while(moveDown(idx)) {
+                leftIdx = idx * 2;
+                rightIdx = idx * 2 + 1;
 
-        while(this.move_down(popped_idx)) {
-            left_child_popped_idx = popped_idx * 2;
-            right_child_popped_idx = popped_idx * 2 + 1;
-
-            if(right_child_popped_idx >= this.heapArray.size()) {
-                if(this.heapArray.get(popped_idx) < this.heapArray.get(left_child_popped_idx)) {
-                    Collections.swap(this.heapArray, popped_idx, left_child_popped_idx);
-                    popped_idx = left_child_popped_idx;
-                }
-            } else {
-                if(this.heapArray.get(left_child_popped_idx) > this.heapArray.get(right_child_popped_idx)) {
-                    if(this.heapArray.get(popped_idx) < this.heapArray.get(left_child_popped_idx)) {
-                        Collections.swap(this.heapArray, popped_idx, left_child_popped_idx);
-                        popped_idx = left_child_popped_idx;
+                if(rightIdx >= this.heapArray.size()) {
+                    if(this.heapArray.get(idx) < this.heapArray.get(leftIdx)) {
+                        Collections.swap(this.heapArray, idx, leftIdx);
+                        idx = leftIdx;
                     }
                 } else {
-                    if(this.heapArray.get(popped_idx) < this.heapArray.get(right_child_popped_idx)) {
-                        Collections.swap(this.heapArray, popped_idx, right_child_popped_idx);
-                        popped_idx = right_child_popped_idx;
+                    if(this.heapArray.get(leftIdx) > this.heapArray.get(rightIdx)) {
+                        if(this.heapArray.get(idx) < this.heapArray.get(leftIdx)) {
+                            Collections.swap(this.heapArray, idx, leftIdx);
+                            idx = leftIdx;
+                        }
+                    } else {
+                        if(this.heapArray.get(idx) < this.heapArray.get(rightIdx)) {
+                            Collections.swap(this.heapArray, idx, rightIdx);
+                            idx = rightIdx;
+                        }
                     }
                 }
             }
+            return returnData;
         }
-        return returned_data;
     }
 }
