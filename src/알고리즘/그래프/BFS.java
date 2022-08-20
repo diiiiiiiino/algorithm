@@ -1,20 +1,21 @@
 package 알고리즘.그래프;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 
+// BFS :
 public class BFS {
 
-    public ArrayList<String> bfs(HashMap<String, ArrayList<String>> graph, String startNode){
+    public List<String> func(HashMap<String, List<String>> graph, String startNode) {
         ArrayList<String> visited = new ArrayList<>();
         LinkedList<String> needVisit = new LinkedList<>();
 
         needVisit.add(startNode);
 
         while(needVisit.size() > 0) {
-            String node = needVisit.pop();
+            String node = needVisit.pollFirst();
 
             if(!visited.contains(node)) {
                 visited.add(node);
@@ -25,21 +26,20 @@ public class BFS {
         return visited;
     }
 
-    public static void main(String[] args){
-        HashMap<String, ArrayList<String>> graph = new HashMap<>();
-
-        graph.put("A", new ArrayList<>(Arrays.asList("B", "C")));
-        graph.put("B", new ArrayList<>(Arrays.asList("A", "D")));
-        graph.put("C", new ArrayList<>(Arrays.asList("A", "G", "H", "I")));
-        graph.put("D", new ArrayList<>(Arrays.asList("B", "E", "F")));
-        graph.put("E", new ArrayList<>(Arrays.asList("D")));
-        graph.put("F", new ArrayList<>(Arrays.asList("D")));
-        graph.put("G", new ArrayList<>(Arrays.asList("C")));
-        graph.put("H", new ArrayList<>(Arrays.asList("C")));
-        graph.put("I", new ArrayList<>(Arrays.asList("C", "J")));
-        graph.put("J", new ArrayList<>(Arrays.asList("I")));
+    public static void main(String[] args) {
+        HashMap<String, List<String>> graph = new HashMap<>();
+        graph.put("A", List.of("B", "C"));
+        graph.put("B", List.of("A", "D"));
+        graph.put("C", List.of("A", "G", "H", "I"));
+        graph.put("D", List.of("B", "E", "F"));
+        graph.put("E", List.of("D"));
+        graph.put("F", List.of("D"));
+        graph.put("G", List.of("C"));
+        graph.put("H", List.of("C"));
+        graph.put("I", List.of("C", "J"));
+        graph.put("J", List.of("I"));
 
         BFS bfs = new BFS();
-        System.out.println(bfs.bfs(graph, "A"));
+        System.out.println(bfs.func(graph, "A"));
     }
 }
