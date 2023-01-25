@@ -1,5 +1,8 @@
 package 코딩테스트.완전탐색;
 
+/**
+ * https://www.acmicpc.net/problem/15651
+ */
 public class BOJ15651 {
     static int N = 4, M = 2;
     static int[] selected = new int[M + 1];

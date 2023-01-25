@@ -1,5 +1,8 @@
 package 코딩테스트.완전탐색;
 
+/**
+ * https://www.acmicpc.net/problem/14888
+ */
 public class BOJ14888 {
 
     static int N = 6;
