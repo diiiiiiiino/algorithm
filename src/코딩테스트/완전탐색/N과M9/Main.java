@@ -1,41 +1,45 @@
-package 코딩테스트.완전탐색.BOJ15655;
+package 코딩테스트.완전탐색.N과M9;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
- * https://www.acmicpc.net/problem/15655
+ * https://www.acmicpc.net/problem/15663 재도전
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N, M;
-    static int[] nums, selected;
+    static int[] nums, selected, used;
 
     static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
         nums = new int[N + 1];
-        for(int i = 1; i <= N; i++){
+        selected = new int[M + 1];
+        used = new int[N + 1];
+        for(int i = 1; i <= N; i++ ){
             nums[i] = scan.nextInt();
         }
-        selected = new int[M + 1];
-
     }
 
-    static void rec_func(int k, int start) {
+    static void rec_func(int k) {
         if(M + 1 == k){
             for(int i = 1; i <= M; i++){
-                sb.append(selected[i]).append(" ");
+                sb.append(selected[i]).append(' ');
             }
             sb.append("\n");
         } else {
-            for(int cand = start; cand <= N; cand++){
-                selected[k] = nums[cand];
-                rec_func(k + 1, cand + 1);
-                selected[k] = 0;
+            int last = 0;
+            for(int i = 1; i <= N; i++){
+                if(used[i] == 1) continue;
+                if(nums[i] == last) continue;
+
+                last = nums[i];
+                selected[k] = nums[i]; used[i] = 1;
+                rec_func(k + 1);
+                selected[k] = 0; used[i] = 0;
             }
         }
     }
@@ -43,7 +47,7 @@ public class Main {
     public static void main(String[] args) {
         input();
         Arrays.sort(nums, 1, N + 1);
-        rec_func(1, 1);
+        rec_func(1);
         System.out.println(sb.toString());
     }
 

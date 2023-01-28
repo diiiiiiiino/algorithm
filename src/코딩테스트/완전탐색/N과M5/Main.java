@@ -1,8 +1,12 @@
-package 코딩테스트.완전탐색.BOJ15663;
+package 코딩테스트.완전탐색.N과M5;
 
 import java.io.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
+/**
+ * https://www.acmicpc.net/problem/15654 성공!
+ */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
@@ -14,26 +18,24 @@ public class Main {
         N = scan.nextInt();
         M = scan.nextInt();
         nums = new int[N + 1];
-        selected = new int[M + 1];
-        used = new int[N + 1];
-        for(int i = 1; i <= N; i++ ){
+        for(int i = 1; i <= N; i++) {
             nums[i] = scan.nextInt();
         }
+
+        selected = new int[M + 1];
+        used = new int[N + 1];
     }
 
     static void rec_func(int k) {
         if(M + 1 == k){
             for(int i = 1; i <= M; i++){
-                sb.append(selected[i]).append(' ');
+                sb.append(selected[i]).append(" ");
             }
             sb.append("\n");
         } else {
-            int last = 0;
             for(int i = 1; i <= N; i++){
                 if(used[i] == 1) continue;
-                if(nums[i] == last) continue;
 
-                last = nums[i];
                 selected[k] = nums[i]; used[i] = 1;
                 rec_func(k + 1);
                 selected[k] = 0; used[i] = 0;

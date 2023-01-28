@@ -1,51 +1,52 @@
-package 코딩테스트.완전탐색.BOJ15657;
+package 코딩테스트.완전탐색.N과M6;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/15657 : N과 M(8) 성공!
+ * https://www.acmicpc.net/problem/15655 성공!
  */
 public class Main {
-    static StringBuilder sb = new StringBuilder();
     static FastReader scan = new FastReader();
+    static StringBuilder sb = new StringBuilder();
 
     static int N, M;
-    static int[] selected, nums;
+    static int[] nums, selected;
 
-    static void input(){
+    static void input() {
         N = scan.nextInt();
         M = scan.nextInt();
         nums = new int[N + 1];
         for(int i = 1; i <= N; i++){
             nums[i] = scan.nextInt();
         }
-
         selected = new int[M + 1];
+
     }
 
-    static void recFunc(int K, int start){
-        if(M + 1 == K){
+    static void rec_func(int k, int start) {
+        if(M + 1 == k){
             for(int i = 1; i <= M; i++){
                 sb.append(selected[i]).append(" ");
             }
             sb.append("\n");
         } else {
-            for(int i = start; i <= N; i++){
-                selected[K] = nums[i];
-                recFunc(K + 1, i);
-                selected[K] = 0;
+            for(int cand = start; cand <= N; cand++){
+                selected[k] = nums[cand];
+                rec_func(k + 1, cand + 1);
+                selected[k] = 0;
             }
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         input();
         Arrays.sort(nums, 1, N + 1);
-        recFunc(1, 1);
+        rec_func(1, 1);
         System.out.println(sb.toString());
     }
+
 
     static class FastReader {
         BufferedReader br;
