@@ -1,11 +1,11 @@
-package 코딩테스트.정렬.수정렬하기2;
+package 코딩테스트.정렬.좌표정렬하기;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/11650
+ * https://www.acmicpc.net/problem/11650 성공!
  */
 
 public class Main {
