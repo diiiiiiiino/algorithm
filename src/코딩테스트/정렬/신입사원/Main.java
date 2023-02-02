@@ -1,49 +1,45 @@
-package 코딩테스트.정렬.수고르기;
+package 코딩테스트.정렬.신입사원;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/2230 성공(힌트)!!
+ * https://www.acmicpc.net/problem/1946 실패
  */
 public class Main {
     static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
 
-    static int N, M, ans;
-    static int[] nums;
+    static int N, ans;
+    static int[] ranks;
 
     static void input() {
         N = scan.nextInt();
-        M = scan.nextInt();
-        nums = new int[N + 1];
-        ans = Integer.MAX_VALUE;
+        ranks = new int[N + 1];
         for(int i = 1; i <= N; i++){
-            nums[i] = scan.nextInt();
+            int rank1 = scan.nextInt();
+            int rank2 = scan.nextInt();
+            ranks[rank1] = rank2;
         }
     }
 
     static void func(){
-        int L = 1, R = 1;
+        ans = 1;
 
-        while(L <= N && R <= N){
-            int val = nums[R] - nums[L];
-
-            if(val >= M){
-                L++;
-                ans = Math.min(ans, val);
-            } else {
-                R++;
+        for(int i = 1; i < N; i++){
+            if(ranks[i] > ranks[i + 1]){
+                ans++;
             }
         }
     }
 
     public static void main(String[] args) {
-        input();
-        Arrays.sort(nums, 1, N + 1);
-        func();
-        System.out.println(ans);
+        int T = scan.nextInt();
+        for(int i = 1; i <= T; i++){
+            input();
+            func();
+            System.out.println(ans);
+        }
     }
 
 
