@@ -1,26 +1,69 @@
 package 코딩테스트.이분탐색.숫자카드2;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
- * https://www.acmicpc.net/problem/10816
+ * https://www.acmicpc.net/problem/10816 실패!
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
+    static int N;
+    static int[] A;
 
     static void input() {
+        N = scan.nextInt();
+        A = new int[N + 1];
+        for (int i = 1; i <= N; i++) {
+            A[i] = scan.nextInt();
+        }
     }
 
-    static void func(){
+    static int lower_bound(int[] A, int L, int R, int X) {
+        int ans = R + 1;
+        while (L <= R) {
+            int mid = (L + R) / 2;
+            if (A[mid] >= X) {
+                ans = mid;
+                R = mid - 1;
+            } else {
+                L = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    static int upper_bound(int[] A, int L, int R, int X) {
+        int ans = R + 1;
+        while (L <= R) {
+            int mid = (L + R) / 2;
+            if (A[mid] > X) {
+                ans = mid;
+                R = mid - 1;
+            } else {
+                L = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    static void pro() {
+        int M = scan.nextInt();
+        Arrays.sort(A, 1, N + 1);
+        for (int i = 1; i <= M; i++) {
+            int X = scan.nextInt();
+            int upper = upper_bound(A, 1, N, X);
+            int lower = lower_bound(A, 1, N, X);
+            sb.append(upper - lower).append(' ');
+        }
+        System.out.println(sb);
     }
 
     public static void main(String[] args) {
         input();
-        func();
+        pro();
     }
 
 
