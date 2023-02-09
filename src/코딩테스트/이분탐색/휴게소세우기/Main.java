@@ -18,7 +18,7 @@ public class Main {
         N = scan.nextInt();
         A = new int[N + 1];
         for (int i = 1; i <= N; i++) {
-            A[i] = scan.nextInt(); //test
+            A[i] = scan.nextInt(); //
         }
     }
 
