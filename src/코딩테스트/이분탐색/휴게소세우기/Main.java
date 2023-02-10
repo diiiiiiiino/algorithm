@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/1477
+ * https://www.acmicpc.net/problem/1477 다시풀기!!
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, M, L;
+    static int N, M, L, ans;
     static int[] A;
 
     static void input() {
@@ -19,14 +19,37 @@ public class Main {
         M = scan.nextInt();
         L = scan.nextInt();
 
-        A = new int[N + 1];
+        A = new int[N + 2];
         for(int i = 1; i <= N; i++){
             A[i] = scan.nextInt();
         }
+        A[N + 1] = L;
+
+        Arrays.sort(A, 1, N + 2);
+    }
+
+    static boolean search(int mid){
+        int count = 0;
+        for(int i = 1; i < N + 2; i++){
+            int diff = A[i] - A[i - 1] - 1;
+            count += (diff / mid);
+        }
+
+        return count <= M;
     }
 
     static void pro() {
-        Arrays.sort(A, 1, N + 1);
+        int l = 1, r = L;
+        while(l <= r){
+            int mid = (l + r) / 2;
+            if(search(mid)){
+                ans = mid;
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        System.out.println(ans);
     }
 
     public static void main(String[] args) {
