@@ -1,69 +1,52 @@
-package 코딩테스트.트리.트리의지름;
+package 코딩테스트.트리.트리의순회;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/1967 다시풀기!!
+ * https://www.acmicpc.net/problem/2263 다시풀기!!
  */
 public class Main {
-    static class Edge{
-        int vertex;
-        int weight;
-
-        Edge(int vertex, int weight){
-            this.vertex = vertex;
-            this.weight = weight;
-        }
-    }
-
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, ans = Integer.MIN_VALUE;
-    static ArrayList<Edge>[] adj;
-    static boolean[] visited;
+    static int N;
+    static int[] inOrder, postOrder, indexes;
 
     static void input() {
         N = scan.nextInt();
-        adj = new ArrayList[N + 1];
+        inOrder = new int[N + 1];
+        postOrder = new int[N + 1];
+        indexes = new int[N + 1];
         for(int i = 1; i <= N; i++){
-            adj[i] = new ArrayList();
+            inOrder[i] = scan.nextInt();
+            indexes[inOrder[i]] = i;
         }
 
-        for(int i = 1; i < N; i++){
-            int parent = scan.nextInt();
-            int vertex = scan.nextInt();
-            int weight = scan.nextInt();
-
-            adj[parent].add(new Edge(vertex, weight));
-            adj[vertex].add(new Edge(parent, weight));
+        for(int i = 1; i <= N; i++){
+            postOrder[i] = scan.nextInt();
         }
     }
 
-    static void dfs(int x, int sum){
-        visited[x] = true;
-
-        for(Edge edge : adj[x]){
-            if(visited[edge.vertex]) continue;
-            dfs(edge.vertex, sum + edge.weight);
+    static void preOrder(int inStart, int inEnd, int postStart, int postEnd) {
+        if(inStart > inEnd || postStart > postEnd){
+            return;
         }
 
-        ans = Math.max(sum, ans);
-    }
+        int rootIdx = indexes[postOrder[postEnd]];
+        int leftSize = rootIdx - inStart;
+        int rightSize = inEnd - rootIdx;
 
-    static void pro() {
-        for(int i = 1; i <= N; i++){
-            visited = new boolean[N + 1];
-            dfs(i, 0);
-        }
+        sb.append(inOrder[rootIdx]).append(" ");
+
+        preOrder(inStart, rootIdx - 1, postStart, postStart + leftSize - 1);
+        preOrder(rootIdx + 1, inEnd, postStart + leftSize, postEnd - 1);
     }
 
     public static void main(String[] args) {
         input();
-        pro();
-        System.out.println(ans);
+        preOrder(1, N, 1, N);
+        System.out.println(sb.toString());
     }
 
 
