@@ -1,21 +1,18 @@
-package 코딩테스트.위상정렬.게임개발;
+package 코딩테스트.위상정렬.성공.작업;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
- * https://www.acmicpc.net/problem/1516 다시풀기 (이해는 됨)!!
+ * https://www.acmicpc.net/problem/2056 성공!!
  */
 public class Main {
     static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
+    static StringBuilder sb;
 
     static int N;
     static int[] indegree, times, ans;
-    static ArrayList<Integer>[] adj, build;
+    static ArrayList<Integer>[] adj;
 
 
     static void input() {
@@ -24,46 +21,43 @@ public class Main {
         times = new int[N + 1];
         ans = new int[N + 1];
         adj = new ArrayList[N + 1];
-        build = new ArrayList[N + 1];
 
         for(int i = 1; i <= N; i++){
             adj[i] = new ArrayList<>();
-            ans[i] = Integer.MIN_VALUE;
         }
 
-        for(int i = 1; i <= N; i++){
-            times[i] = scan.nextInt();
-            while(true){
-                int x = scan.nextInt();
-                if(x == -1) break;
+        for(int x = 1; x <= N; x++){
+            int time = scan.nextInt();
+            int size = scan.nextInt();
 
-                adj[x].add(i);
-                indegree[i]++;
+            times[x] = time;
+            for(int i = 1; i <= size; i++){
+                int y = scan.nextInt();
+                adj[y].add(x);
+                indegree[x]++;
             }
+
+            ans[x] = Integer.MIN_VALUE;
         }
     }
 
     static void pro() {
         Deque<Integer> deque = new LinkedList<>();
-
         for(int i = 1; i <= N; i++){
-            if(indegree[i] == 0){
+            if(indegree[i] == 0) {
                 deque.add(i);
-                ans[i] = times[i]; //시작되는 정점에 건설 시간을 대입 해줘야 함
+                ans[i] = times[i];
             }
         }
 
-        //ans[1] = times[1]; //이 부분이 틀림
         while(!deque.isEmpty()){
             int x = deque.poll();
 
             for(int y : adj[x]){
-                /* 최소 시간이라고 해서 min으로 하는것이 아니라 문제에 맞게 해야한다. 
-                   이 문제에서는 건물을 동시에 지을수 있기때문에 동시에 지어진 건물의 최대 시간을 더해줘야 한다
-                */
-                ans[y] = Math.max(ans[y], ans[x] + times[y]);  
+                ans[y] = Math.max(ans[y], ans[x] + times[y]);
 
                 indegree[y]--;
+
                 if(indegree[y] == 0) deque.add(y);
             }
         }
@@ -72,11 +66,10 @@ public class Main {
     public static void main(String[] args) {
         input();
         pro();
-        for(int i = 1; i <= N; i++){
-            System.out.println(ans[i]);
-        }
-    }
 
+        Arrays.sort(ans, 1, N + 1);
+        System.out.println(ans[N]);
+    }
 
     static class FastReader {
         BufferedReader br;
