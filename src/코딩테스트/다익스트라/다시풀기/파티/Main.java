@@ -1,4 +1,4 @@
-package 코딩테스트.다익스트라.파티;
+package 코딩테스트.다익스트라.다시풀기.파티;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -6,6 +6,9 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/**
+ * https://www.acmicpc.net/problem/1238 다시풀기!!
+ */
 public class Main {
     static class Edge {
         public int to, weight;
@@ -29,8 +32,8 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int N, M, X;
-    static int[] dist;
-    static ArrayList<Edge>[] edges;
+    static int[] dist, reverse;
+    static ArrayList<Edge>[] edges, reverseEdges;
 
     static void input() {
         N = scan.nextInt();
@@ -38,10 +41,13 @@ public class Main {
         X = scan.nextInt();
 
         dist = new int[N + 1];
+        reverse = new int[N + 1];
         edges = new ArrayList[N + 1];
+        reverseEdges = new ArrayList[N + 1];
 
         for(int i = 1; i <= N; i++){
             edges[i] = new ArrayList<>();
+            reverseEdges[i] = new ArrayList<>();
         }
 
         for(int i = 1; i <= M; i++){
@@ -50,12 +56,13 @@ public class Main {
             int weight = scan.nextInt();
 
             edges[x].add(new Edge(y, weight));
+            reverseEdges[y].add(new Edge(x, weight));
         }
     }
 
-    static void dijkstra(int start){
+    static void dijkstra(int start, ArrayList<Edge>[] edges, int[] dist){
         for(int i = 1; i <= N; i++){
-            dist[i] = Integer.MIN_VALUE;
+            dist[i] = Integer.MAX_VALUE;
         }
 
         PriorityQueue<Info> pq = new PriorityQueue<>(Comparator.comparing(o -> o.dist));
@@ -69,7 +76,7 @@ public class Main {
             if(dist[info.idx] != info.dist) continue;
 
             for(Edge e : edges[info.idx]){
-                if(dist[info.idx] + e.weight < dist[e.to]) continue;
+                if(dist[info.idx] + e.weight >= dist[e.to]) continue;
                 dist[e.to] = dist[info.idx] + e.weight;
                 pq.add(new Info(e.to, dist[e.to]));
             }
@@ -78,7 +85,14 @@ public class Main {
 
     static void pro() {
         // 정답 출력하기
-        dijkstra(1);
+        dijkstra(X, edges, dist);
+        dijkstra(X, reverseEdges, reverse);
+
+        int ans = Integer.MIN_VALUE;
+        for(int i = 1; i <= N; i++){
+            ans = Math.max(ans, dist[i] + reverse[i]);
+        }
+        System.out.println(ans);
     }
 
 
