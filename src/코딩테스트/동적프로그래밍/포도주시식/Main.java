@@ -1,31 +1,25 @@
-package 코딩테스트.동적프로그래밍.다시풀기.이xn타일링2;
+package 코딩테스트.동적프로그래밍.포도주시식;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/11727
+ * https://www.acmicpc.net/problem/2156
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static int[] dy;
+    static int[][] dy;
+
     static void input() {
-        N = scan.nextInt();
-        dy = new int[N + 5];
+
     }
 
     static void pro() {
-        dy[1] = 1;
-        dy[2] = 3;
 
-        for(int i = 3; i <= N; i++){
-            dy[i] = (dy[i - 1] + (dy[i - 2] * 2)) % 10007;
-        }
-
-        System.out.println(dy[N]);
     }
 
     public static void main(String[] args) {
