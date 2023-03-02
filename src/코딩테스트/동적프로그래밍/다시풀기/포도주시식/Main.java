@@ -1,7 +1,6 @@
-package 코딩테스트.동적프로그래밍.포도주시식;
+package 코딩테스트.동적프로그래밍.다시풀기.포도주시식;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
