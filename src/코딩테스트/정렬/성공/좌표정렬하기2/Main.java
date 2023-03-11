@@ -1,47 +1,58 @@
-package 코딩테스트.정렬.신입사원;
+package 코딩테스트.정렬.성공.좌표정렬하기2;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/1946 실패
+ * https://www.acmicpc.net/problem/11651 성공!
  */
 public class Main {
-    static FastReader scan = new FastReader();
+    static class Point implements Comparable<Point>{
+        int x;
+        int y;
 
-    static int N, ans;
-    static int[] ranks;
+        Point(int x, int y){
+            this.x = x;
+            this.y = y;
+        }
+
+        public int compareTo(Point point){
+            if(this.y != point.y){
+                return this.y - point.y;
+            }
+
+            return this.x - point.x;
+        }
+    }
+
+    static FastReader scan = new FastReader();
+    static StringBuilder sb = new StringBuilder();
+
+    static int N;
+    static Point[] points;
 
     static void input() {
         N = scan.nextInt();
-        ranks = new int[N + 1];
+        points = new Point[N + 1];
         for(int i = 1; i <= N; i++){
-            int rank1 = scan.nextInt();
-            int rank2 = scan.nextInt();
-            ranks[rank1] = rank2;
+            int x = scan.nextInt(), y = scan.nextInt();
+            points[i] = new Point(x, y);
         }
     }
 
-    static void func(){
-        ans = 1;
-
-        for(int i = 1; i < N; i++){
-            if(ranks[i] > ranks[i + 1]){
-                ans++;
-            }
+    static void pro() {
+        Arrays.sort(points, 1, N + 1);
+        for(int i = 1; i <= N; i++){
+            sb.append(points[i].x).append(" ").append(points[i].y).append("\n");
         }
+        System.out.println(sb.toString());
     }
 
     public static void main(String[] args) {
-        int T = scan.nextInt();
-        for(int i = 1; i <= T; i++){
-            input();
-            func();
-            System.out.println(ans);
-        }
+        input();
+        pro();
     }
-
 
     static class FastReader {
         BufferedReader br;

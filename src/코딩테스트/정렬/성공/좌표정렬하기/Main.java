@@ -1,4 +1,4 @@
-package 코딩테스트.정렬.좌표정렬하기;
+package 코딩테스트.정렬.성공.좌표정렬하기;
 
 import java.io.*;
 import java.util.Arrays;

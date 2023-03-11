@@ -1,35 +1,66 @@
-package 코딩테스트.정렬.세수;
+package 코딩테스트.정렬.성공.회의실배정;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/10817 성공!
+ * https://www.acmicpc.net/problem/1931
  */
 public class Main {
-    static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
+    static class Time implements Comparable<Time>{
+        int start;
+        int end;
 
-    static int[] nums;
+        public Time(int start, int end){
+            this.start = start;
+            this.end = end;
+        }
 
-    static void input() {
-        nums = new int[4];
-        for(int i = 1; i <= 3; i++){
-            nums[i] = scan.nextInt();
+        public int compareTo(Time time){
+            if(this.end != time.end){
+                return this.end - time.end;
+            }
+
+            return this.start - time.start;
         }
     }
 
-    static void func(){
-        Arrays.sort(nums, 1, 4);
-        System.out.println(nums[2]);
+    static FastReader scan = new FastReader();
+    static StringBuilder sb = new StringBuilder();
+
+    static int N;
+    static Time[] times;
+
+    static void input() {
+        N = scan.nextInt();
+        times = new Time[N + 1];
+
+        for(int i = 1; i <= N; i++){
+            int start = scan.nextInt();
+            int end = scan.nextInt();
+            times[i] = new Time(start, end);
+        }
+
+        Arrays.sort(times, 1, N + 1);
+    }
+
+    static void pro() {
+        int count = 1;
+        Time time = times[1];
+        for(int i = 2; i <= N; i++){
+            if(time.end <= times[i].start){
+                time = times[i];
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 
     public static void main(String[] args) {
         input();
-        func();
+        pro();
     }
-
 
     static class FastReader {
         BufferedReader br;

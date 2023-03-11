@@ -1,41 +1,51 @@
-package 코딩테스트.정렬.수정렬하기3;
+package 코딩테스트.정렬.다시풀기.수고르기;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/10989 성공!
+ * https://www.acmicpc.net/problem/2230 성공(힌트)!!
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N;
+    static int N, M, ans;
     static int[] nums;
 
     static void input() {
         N = scan.nextInt();
+        M = scan.nextInt();
         nums = new int[N + 1];
+        ans = Integer.MAX_VALUE;
         for(int i = 1; i <= N; i++){
             nums[i] = scan.nextInt();
         }
     }
 
-    static void pro() {
-        Arrays.sort(nums, 1, N + 1);
-        for(int i = 1; i <= N; i++){
-            sb.append(nums[i]).append("\n");
+    static void func(){
+        int L = 1, R = 1;
+
+        while(L <= N && R <= N){
+            int val = nums[R] - nums[L];
+
+            if(val >= M){
+                L++;
+                ans = Math.min(ans, val);
+            } else {
+                R++;
+            }
         }
-        System.out.println(sb.toString());
     }
 
     public static void main(String[] args) {
         input();
-        pro();
+        Arrays.sort(nums, 1, N + 1);
+        func();
+        System.out.println(ans);
     }
+
 
     static class FastReader {
         BufferedReader br;

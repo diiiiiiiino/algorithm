@@ -1,52 +1,31 @@
-package 코딩테스트.정렬.좌표정렬하기2;
+package 코딩테스트.정렬.성공.수정렬하기3;
 
 import java.io.*;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/11651 성공!
+ * https://www.acmicpc.net/problem/10989 성공!
  */
 public class Main {
-    static class Point implements Comparable<Point>{
-        int x;
-        int y;
-
-        Point(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-
-        public int compareTo(Point point){
-            if(this.y != point.y){
-                return this.y - point.y;
-            }
-
-            return this.x - point.x;
-        }
-    }
-
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N;
-    static Point[] points;
+    static int[] nums;
 
     static void input() {
         N = scan.nextInt();
-        points = new Point[N + 1];
+        nums = new int[N + 1];
         for(int i = 1; i <= N; i++){
-            int x = scan.nextInt(), y = scan.nextInt();
-            points[i] = new Point(x, y);
+            nums[i] = scan.nextInt();
         }
     }
 
     static void pro() {
-        Arrays.sort(points, 1, N + 1);
+        Arrays.sort(nums, 1, N + 1);
         for(int i = 1; i <= N; i++){
-            sb.append(points[i].x).append(" ").append(points[i].y).append("\n");
+            sb.append(nums[i]).append("\n");
         }
         System.out.println(sb.toString());
     }
