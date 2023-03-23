@@ -33,6 +33,7 @@ public class Main {
         for(int i = 0; i < H; i++){
             maps[i] = nums;
         }
+        
     }
 
     public static void main(String[] args) {
