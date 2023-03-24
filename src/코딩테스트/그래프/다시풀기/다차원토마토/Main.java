@@ -1,4 +1,4 @@
-package 코딩테스트.그래프.토마토;
+package 코딩테스트.그래프.다시풀기.다차원토마토;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -13,24 +13,22 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
 
     static int M, N, H, ans;
-    static int[][] nums;
     static int[][][] maps, dist;
-    static boolean[][][] visited;
-    static int[][] dir = { { 0, -1, 0 } , { 0, 0, 1 }, { 0, 1, 0 }, { 0, 0, -1 }, { -1, 0, 0 }, { 1, 0, 0 } };
-    static void input() {
+    static int[][] dirs = { { 1, 0, 0 }, { 0, -1, 0 }, { 0, 0, 1 }, { 0, 1, 0 }, { 0, 0, -1 }, { -1, 0, 0 } };
+
+    static void input(){
         M = scan.nextInt();
         N = scan.nextInt();
         H = scan.nextInt();
 
-        nums = new int[N][M];
         maps = new int[H][N][M];
-        visited = new boolean[H][N][M];
         dist = new int[H][N][M];
 
-        for(int z = 0; z < H; z++){
-            for(int x = 0; x < N; x++){
-                for(int y = 0; y < M; y++){
-                    maps[z][x][y] = scan.nextInt();
+        for(int h = 0; h < H; h++){
+            for(int n = 0; n < N; n++){
+                for(int m = 0; m < M; m++){
+                    maps[h][n][m] = scan.nextInt();
+                    dist[h][n][m] = -1;
                 }
             }
         }
@@ -39,57 +37,57 @@ public class Main {
     static void bfs(){
         Queue<Integer> queue = new LinkedList<>();
 
-        for(int z = 0; z < H; z++){
-            for(int x = 0; x < N; x++){
-                for(int y = 0; y < M; y++){
-                    dist[z][x][y] = -1;
-                    if(maps[z][x][y] == 1){
-                        dist[z][x][y] = 0;
-                        queue.add(z);
-                        queue.add(x);
-                        queue.add(y);
+        for(int h = 0; h < H; h++){
+            for(int n = 0; n < N; n++){
+                for(int m = 0; m < M; m++){
+                    if(maps[h][n][m] == 1){
+                        queue.add(h);
+                        queue.add(n);
+                        queue.add(m);
+                        dist[h][n][m] = 0;
                     }
                 }
             }
         }
 
         while(!queue.isEmpty()){
-            int z = queue.poll();
-            int x = queue.poll();
-            int y = queue.poll();
+            int h = queue.poll();
+            int n = queue.poll();
+            int m = queue.poll();
 
             for(int i = 0; i < 6; i++){
-                int nz = dir[i][0] + z;
-                int nx = dir[i][1] + x;
-                int ny = dir[i][2] + y;
+                int nh = dirs[i][0] + h;
+                int nn = dirs[i][1] + n;
+                int nm = dirs[i][2] + m;
 
-                if(nz < 0 || nx < 0 || ny < 0 || nz >= H || nx >= N || ny >= M) continue;
-                if(maps[nz][nx][ny] == -1) continue;
-                if(dist[nz][nx][ny] != -1) continue;
+                if(nh < 0 || nm < 0 || nn < 0 || nh >= H || nm >= M || nn >= N) continue;
+                if(maps[nh][nn][nm] == -1) continue;
+                if(dist[nh][nn][nm] != -1) continue;
 
-                queue.add(nz);
-                queue.add(nx);
-                queue.add(ny);
+                queue.add(nh);
+                queue.add(nn);
+                queue.add(nm);
 
-                dist[nz][nx][ny] = dist[z][x][y] + 1;
+                maps[nh][nn][nm] = 1;
+                dist[nh][nn][nm] = dist[h][n][m] + 1;
             }
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         input();
         bfs();
 
-        int ans = 0;
-        for (int h = 0; h < H; h++) {
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < M; j++) {
-                    if (maps[h][i][j] == -1) continue;
-                    if (dist[h][i][j] == -1) {
+        for(int h = 0; h < H; h++){
+            for(int n = 0; n < N; n++){
+                for(int m = 0; m < M; m++){
+                    if(maps[h][n][m] == -1) continue;
+                    if(dist[h][n][m] == -1){
                         System.out.println(-1);
                         return;
                     }
-                    ans = Math.max(ans, dist[h][i][j]);
+
+                    ans = Math.max(ans, dist[h][n][m]);
                 }
             }
         }
@@ -99,6 +97,7 @@ public class Main {
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
+
 
         public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
