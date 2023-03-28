@@ -1,4 +1,4 @@
-package 모던자바인액션.람다조합;
+package 모던자바인액션.람다표현식.람다조합;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -7,7 +7,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static 모던자바인액션.람다조합.Color.GREEN;
+import static 모던자바인액션.람다표현식.람다조합.Color.GREEN;
 
 public class Main {
     public static void main(String[] args){

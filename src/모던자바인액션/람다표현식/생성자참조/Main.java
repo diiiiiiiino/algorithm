@@ -1,9 +1,9 @@
-package 모던자바인액션.생성자참조;
+package 모던자바인액션.람다표현식.생성자참조;
 
-import 모던자바인액션.람다조합.Apple;
-import 모던자바인액션.람다조합.Color;
-import 모던자바인액션.람다조합.Fruit;
-import 모던자바인액션.람다조합.Orange;
+import 모던자바인액션.람다표현식.람다조합.Apple;
+import 모던자바인액션.람다표현식.람다조합.Color;
+import 모던자바인액션.람다표현식.람다조합.Fruit;
+import 모던자바인액션.람다표현식.람다조합.Orange;
 
 import java.util.HashMap;
 import java.util.Map;

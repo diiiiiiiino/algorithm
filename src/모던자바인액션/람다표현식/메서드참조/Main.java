@@ -1,4 +1,4 @@
-package 모던자바인액션.메서드참조;
+package 모던자바인액션.람다표현식.메서드참조;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
