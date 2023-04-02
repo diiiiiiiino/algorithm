@@ -17,7 +17,7 @@ public class MyHash2 {
     }
 
     public int hashFunc(String key){
-        return 9 % this.hashTable.length;
+        return (int)(key.charAt(0)) % this.hashTable.length;
     }
 
     public boolean saveData(String key, String value) {
@@ -27,7 +27,7 @@ public class MyHash2 {
                 this.hashTable[address].value = value;
                 return true;
             } else {
-                Integer currAddress = address;
+                Integer currAddress = address + 1;
                 while(this.hashTable[currAddress] != null) {
                     if(this.hashTable[currAddress].key == key) {
                         this.hashTable[currAddress].value = value;
@@ -39,6 +39,9 @@ public class MyHash2 {
                         }
                     }
                 }
+
+                this.hashTable[currAddress] = new Slot(key, value);
+                return true;
             }
         } else {
             this.hashTable[address] = new Slot(key, value);
@@ -69,6 +72,15 @@ public class MyHash2 {
         } else {
             return null;
         }
+    }
+
+    public static void main(String[] args){
+        MyHash2 mainObject = new MyHash2(20);
+        mainObject.saveData("DaveLee", "01022223333");
+        mainObject.saveData("fun-coding", "01033334444");
+        mainObject.saveData("David", "01044445555");
+        mainObject.saveData("Dave", "01055556666");
+        mainObject.getData("Dave");
     }
 
 }

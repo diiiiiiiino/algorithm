@@ -19,7 +19,7 @@ public class MyHash {
     }
 
     public int hashFunc(String key) {
-        return 9 % this.hashTable.length;
+        return (int)(key.charAt(0)) % this.hashTable.length;
     }
 
     public boolean saveData(String key, String value) {
@@ -56,5 +56,14 @@ public class MyHash {
             }
         }
         return null;
+    }
+
+    public static void main(String[] args){
+        MyHash mainObject = new MyHash(20);
+        mainObject.saveData("DaveLee", "01022223333");
+        mainObject.saveData("fun-coding", "01033334444");
+        mainObject.saveData("David", "01044445555");
+        mainObject.saveData("Dave", "01055556666");
+        mainObject.getData("Dave");
     }
 }
