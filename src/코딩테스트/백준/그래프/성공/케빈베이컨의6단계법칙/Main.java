@@ -1,4 +1,4 @@
-package 코딩테스트.백준.그래프.촌수계산;
+package 코딩테스트.백준.그래프.성공.케빈베이컨의6단계법칙;
 
 import java.io.*;
 import java.util.ArrayDeque;
@@ -7,25 +7,20 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/2644
+ * https://www.acmicpc.net/problem/1389
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N, A, B, M;
+    static int N, M, ANS = Integer.MAX_VALUE, IDX;
     static ArrayList<Integer>[] adj;
     static int[] dist;
 
-
     static void input(){
         N = scan.nextInt();
-        A = scan.nextInt();
-        B = scan.nextInt();
         M = scan.nextInt();
-
         adj = new ArrayList[N + 1];
-        dist = new int[N + 1];
 
         for(int i = 1; i <= N; i++){
             adj[i] = new ArrayList<>();
@@ -38,33 +33,48 @@ public class Main {
             adj[x].add(y);
             adj[y].add(x);
         }
+    }
 
+    static int bfs(int start){
         for(int i = 1; i <= N; i++){
             dist[i] = -1;
         }
-    }
 
-    static void bfs(int start){
         Queue<Integer> queue = new ArrayDeque<>();
         queue.add(start);
-        dist[start] = 0;
 
         while(!queue.isEmpty()){
             int x = queue.poll();
 
             for(int y : adj[x]){
                 if(dist[y] > -1) continue;
-
                 queue.add(y);
                 dist[y] = dist[x] + 1;
             }
         }
+
+        int sum = 0;
+        for(int i = 1; i <= N; i++){
+            sum += dist[i];
+        }
+
+        return sum;
     }
 
     public static void main(String[] args){
         input();
-        bfs(A);
-        System.out.println(dist[B]);
+
+        for(int i = 1; i <= N; i++){
+            dist = new int[N + 1];
+            int sum = bfs(i);
+
+            if(ANS > sum){
+                ANS = sum;
+                IDX = i;
+            }
+        }
+
+        System.out.println(IDX);
     }
 
     static class FastReader {
