@@ -1,62 +1,75 @@
-package 코딩테스트.백준.이분탐색.기타레슨;
+package 코딩테스트.백준.이분탐색.다시풀기.수찾기;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
- * https://www.acmicpc.net/problem/12738 다시풀기
+ * https://www.acmicpc.net/problem/1920
  */
 public class Main {
     static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
-    static int N;
-    static int[] nums;
-    static List<Integer> list = new ArrayList<>();
+    static int N, M;
+    static int[] nums, searches, ans;
 
-    static void input() {
+
+    static void input(){
         N = scan.nextInt();
         nums = new int[N + 1];
+
         for(int i = 1; i <= N; i++){
             nums[i] = scan.nextInt();
         }
+
+        M = scan.nextInt();
+        searches = new int[M + 1];
+        ans = new int[M + 1];
+
+        for(int i = 1; i <= M; i++){
+            searches[i] = scan.nextInt();
+        }
     }
 
-    static void func(){
-        list.add(Integer.MIN_VALUE);
+    static void binarySearch(int search, int idx){
+        int L = 1, R = N;
 
-        for(int i = 1; i <= N; i++){
-            int val = nums[i];
+        while(L <= R){
+            int mid = (L + R) / 2;
 
-            if(val > list.get(list.size() - 1)){
-                list.add(val);
-            }else {
-                int L = 1, R = list.size() - 1;
-                while(L < R){
-                    int mid = (L+R) / 2;
-                    if(list.get(mid) >= val){
-                        R = mid;
-                    } else {
-                        L = mid + 1;
-                    }
-                }
-                list.set(R, val);
+            if(nums[mid] > search){
+                R = mid - 1;
+            } else if(nums[mid] < search) {
+                L = mid + 1;
+            } else {
+                ans[idx] = 1;
+                break;
             }
         }
-        System.out.println(list.size() - 1);
     }
 
-    public static void main(String[] args) {
+    static void pro(){
+        Arrays.sort(nums, 1,N + 1);
+
+        for(int i = 1; i <= M; i++){
+            binarySearch(searches[i], i);
+        }
+
+        for(int i = 1; i <= M; i++){
+            System.out.println(ans[i]);
+        }
+    }
+
+    public static void main(String[] args){
         input();
-        func();
+        pro();
     }
-
 
     static class FastReader {
         BufferedReader br;
         StringTokenizer st;
+
 
         public FastReader() {
             br = new BufferedReader(new InputStreamReader(System.in));
