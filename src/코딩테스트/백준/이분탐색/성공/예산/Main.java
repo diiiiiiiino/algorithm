@@ -29,25 +29,18 @@ public class Main {
     static boolean determine(int x){
         int sum = 0;
         for(int i = 1; i <= N; i++){
-            sum += (a[i] >= x ? x : a[i]);
+            sum += Math.min(a[i], x);
         }
 
         return sum <= M;
     }
 
     static void pro(){
-        int sum = 0;
+        int L = 1, R = 0, ans = 0;
+
         for(int i = 1; i <= N; i++){
-            sum += a[i];
+            R = Math.max(a[i], R);
         }
-
-        if(sum <= M){
-            Arrays.sort(a, 1, N + 1);
-            System.out.println(a[N]);
-            return;
-        }
-
-        int L = 1, R = 1_000_000_000, ans = 0;
 
         while(L <= R){
             int mid = (L + R) / 2;
