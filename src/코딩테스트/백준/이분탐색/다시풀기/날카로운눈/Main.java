@@ -1,4 +1,4 @@
-package 코딩테스트.백준.이분탐색.날카로운눈;
+package 코딩테스트.백준.이분탐색.다시풀기.날카로운눈;
 
 import java.io.*;
 import java.util.*;
