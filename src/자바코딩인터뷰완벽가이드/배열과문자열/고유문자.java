@@ -3,10 +3,10 @@ package 자바코딩인터뷰완벽가이드.배열과문자열;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Strings {
+public class 고유문자 {
     private static final int MAX_CODE = 65535;
 
-    private Strings(){
+    private 고유문자(){
         throw new AssertionError("Cannot be instantiated");
     }
 
