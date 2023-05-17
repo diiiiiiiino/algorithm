@@ -1,6 +1,6 @@
-package 코딩테스트.프로그래머스.문자열;
+package 코딩테스트.프로그래머스.문자열.이진변환반복하기;
 
-public class 이진변환반복하기 {
+public class Solution {
     private int countZeros(String s){
         int zeros = 0;
         for(char c : s.toCharArray()){

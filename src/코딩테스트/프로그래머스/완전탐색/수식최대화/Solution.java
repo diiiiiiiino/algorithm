@@ -1,10 +1,10 @@
-package 코딩테스트.프로그래머스.완전탐색;
+package 코딩테스트.프로그래머스.완전탐색.수식최대화;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class 수식최대화 {
+public class Solution {
     private static final String[][] precedences = {
             "+-*".split(""),
             "+*-".split(""),
@@ -61,7 +61,7 @@ public class 수식최대화 {
     }
 
     public static void main(String[] args) {
-        수식최대화 s = new 수식최대화();
+        Solution s = new Solution();
         s.solution("100-200*300-500+20");
     }
 }

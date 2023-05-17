@@ -1,8 +1,8 @@
-package 코딩테스트.프로그래머스.정렬;
+package 코딩테스트.프로그래머스.정렬.H인덱스;
 
 import java.util.Arrays;
 
-public class H인덱스 {
+public class Solution {
     private boolean isValid(int[] citations, int h){
         int index = citations.length - h;
         return citations[index] >= h;

@@ -1,9 +1,9 @@
-package 코딩테스트.프로그래머스.재귀;
+package 코딩테스트.프로그래머스.재귀.모음사전최적화;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class 모음사전최적화 {
+public class Solution {
     private static final char[] CHARS = "AEIOU".toCharArray();
 
     private void generate(String word, List<String> words){

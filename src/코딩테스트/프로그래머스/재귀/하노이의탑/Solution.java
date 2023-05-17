@@ -1,9 +1,9 @@
-package 코딩테스트.프로그래머스.재귀;
+package 코딩테스트.프로그래머스.재귀.하노이의탑;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class 하노이의탑 {
+public class Solution {
     private void hanoi(int n, int from, int to, List<int[]> process){
         if(n == 1) {
             process.add(new int[] {from, to});

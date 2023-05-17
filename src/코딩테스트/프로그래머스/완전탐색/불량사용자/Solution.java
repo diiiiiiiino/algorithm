@@ -1,10 +1,10 @@
-package 코딩테스트.프로그래머스.완전탐색;
+package 코딩테스트.프로그래머스.완전탐색.불량사용자;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class 불량사용자 {
+public class Solution {
     private void count(int index, Set<String> banned, String[][] bans, Set<Set<String>> banSet){
         if(index == bans.length){
             banSet.add(new HashSet<>(banned));
@@ -34,7 +34,7 @@ public class 불량사용자 {
     }
 
     public static void main(String[] args) {
-        불량사용자 a = new 불량사용자();
+        Solution a = new Solution();
         a.solution(new String[]{"frodo", "fradi", "crodo", "abc123", "frodoc"}, new String[]{"fr*d*", "abc1**"});
     }
 }

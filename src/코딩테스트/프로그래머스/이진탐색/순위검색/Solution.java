@@ -1,9 +1,9 @@
-package 코딩테스트.프로그래머스.이진탐색;
+package 코딩테스트.프로그래머스.이진탐색.순위검색;
 
 import java.util.*;
 import java.util.function.Consumer;
 
-public class 순위검색 {
+public class Solution {
     private void forEachKey(int index, String prefix, String[] tokens, Consumer<String> action){
         if(index == tokens.length - 1){
             action.accept(prefix);
@@ -45,10 +45,10 @@ public class 순위검색 {
             } else {
                 start = mid + 1;
             }
+        }
 
-            if(scores.get(start) < score){
-                return scores.size();
-            }
+        if(scores.get(start) < score){
+            return scores.size();
         }
 
         return start;
@@ -76,5 +76,11 @@ public class 순위검색 {
         }
 
         return answer;
+    }
+
+    public static void main(String[] args) {
+        Solution a = new Solution();
+        a.solution(new String[]{"java backend junior pizza 150", "python frontend senior chicken 210", "python frontend senior chicken 150", "cpp backend senior pizza 260", "java backend junior chicken 80", "python backend senior chicken 50"},
+                new String[]{"java and backend and junior and pizza 100", "python and frontend and senior and chicken 200", "cpp and - and senior and pizza 250", "- and backend and senior and - 150", "- and - and - and chicken 100", "- and - and - and - 150"});
     }
 }

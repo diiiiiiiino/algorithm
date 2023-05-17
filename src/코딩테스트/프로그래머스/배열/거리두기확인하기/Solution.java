@@ -1,6 +1,6 @@
-package 코딩테스트.프로그래머스.배열;
+package 코딩테스트.프로그래머스.배열.거리두기확인하기;
 
-public class 거리두기확인하기 {
+public class Solution {
     private static final int dx[] = {0, -1, 1, 0};
     private static final int dy[] = {-1, 0, 0, 1};
 
