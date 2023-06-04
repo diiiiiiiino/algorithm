@@ -2,7 +2,7 @@ package 자바코딩인터뷰완벽가이드.배열과문자열.동일한문자�
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(isOneEditAway("tank", "tanc"));
+        System.out.println(isOneEditAway("tnc", "tank"));
     }
 
     public static boolean isOneEditAway(String q, String p){

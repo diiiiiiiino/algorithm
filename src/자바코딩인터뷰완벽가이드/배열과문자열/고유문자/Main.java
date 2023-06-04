@@ -1,12 +1,12 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열;
+package 자바코딩인터뷰완벽가이드.배열과문자열.고유문자;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class 고유문자 {
+public class Main {
     private static final int MAX_CODE = 65535;
 
-    private 고유문자(){
+    private Main(){
         throw new AssertionError("Cannot be instantiated");
     }
 

@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(isRotation("helloworld", "orldhellow"));
+        System.out.println(isRotation("helloworld", "oworldhell"));
     }
 
     public static boolean isRotation(String str1, String str2){

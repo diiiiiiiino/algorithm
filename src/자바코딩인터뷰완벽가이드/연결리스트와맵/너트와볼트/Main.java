@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        char[] nuts = {'$', '%', '&', 'x', '@'};
+        char[] nuts = {'$', '%', '&', 'x', '+'};
         char[] bolts = {'%', '@', 'x', '$', '&'};
 
         match(nuts, bolts);
@@ -14,6 +14,10 @@ public class Main {
 
     public static void match(char[] nuts, char[] bolts){
         Map<Character, Integer> map = new HashMap<>();
+
+        for(int i = 0; i < nuts.length; i++){
+            map.put(nuts[i], i);
+        }
 
         for(int i = 0; i < nuts.length; i++){
             char bolt = bolts[i];

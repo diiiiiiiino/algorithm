@@ -1,9 +1,9 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열;
+package 자바코딩인터뷰완벽가이드.배열과문자열.고유문자2;
 
-public class 고유문자2 {
+public class Main {
     private static final char A_CHAR = 'a';
 
-    private 고유문자2(){
+    private Main(){
         throw new AssertionError("Cannot be instantiated");
     }
 
@@ -29,6 +29,6 @@ public class 고유문자2 {
     }
 
     public static void main(String[] args) {
-        isUnique("aab");
+        isUnique("abb");
     }
 }
