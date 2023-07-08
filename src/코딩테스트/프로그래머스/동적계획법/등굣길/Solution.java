@@ -4,8 +4,6 @@ import java.util.*;
 
 class Solution {
     public int solution(int m, int n, int[][] puddles) {
-        int answer = 0;
-        
         int[][] dy = new int[n][m];
         
         dy[0][0] = 1;

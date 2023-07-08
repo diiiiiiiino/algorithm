@@ -19,4 +19,20 @@ class Solution {
         
         return 1;
     }
+
+    public int solution2(String before, String after){
+        return toMap(before).equals(toMap(after)) ? 1 : 0;
+    }
+
+    private static Map<Character, Integer> toMap(String word) {
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : word.toCharArray()){
+            map.putIfAbsent(c, 0);
+            map.put(c, map.get(c) + 1);
+        }
+
+        return map;
+    }
+
+
 }

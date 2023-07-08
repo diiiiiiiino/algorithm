@@ -4,8 +4,6 @@ import java.util.*;
 
 class Solution {
     public int solution(int[][] triangle) {
-        int answer = 0;
-        
         int idx = triangle.length - 1;
         
         for(int i = idx - 1; i >= 0; i--){
@@ -16,5 +14,10 @@ class Solution {
         }
         
         return triangle[0][0];
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        solution.solution(new int[][]{ {7}, {3,8}, {8,1,0}, {2,7,4,4}, {4,5,2,6,5} });
     }
 }

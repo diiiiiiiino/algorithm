@@ -2,8 +2,6 @@ package 코딩테스트.프로그래머스.동적계획법.피보나치수;
 
 class Solution {
     public int solution(int n) {
-        int answer = 0;
-        
         int[] dy = new int[n + 1];
         
         dy[0] = 0;
