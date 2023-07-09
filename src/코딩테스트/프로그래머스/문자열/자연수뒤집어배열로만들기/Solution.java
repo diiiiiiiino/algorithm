@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] results = solution.solution2(12345);
+        int[] results = solution.solution(12345);
 
         System.out.println(Arrays.toString(results));
     }
@@ -22,16 +22,4 @@ public class Solution {
         return answer;
     }
 
-    public int[] solution2(long n) {
-        String str = Long.toString(n);
-        String reversed = new StringBuilder(str).reverse().toString();
-        char[] arr = reversed.toCharArray();
-
-        int[] result = new int[arr.length];
-        for(int i = 0; i < result.length; i++){
-            result[i] = arr[i] - '0';
-        }
-
-        return result;
-    }
 }

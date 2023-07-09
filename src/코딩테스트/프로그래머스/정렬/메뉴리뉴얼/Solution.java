@@ -32,9 +32,8 @@ class Solution {
     }
     
     public String[] solution(String[] orders, int[] course) {
-        String[] answer = {};
         List<Menu> menus = new ArrayList<>();
-        
+
         createMenus(orders, course, menus);
         
         Map<Integer, List<Menu>> map = menus.stream()

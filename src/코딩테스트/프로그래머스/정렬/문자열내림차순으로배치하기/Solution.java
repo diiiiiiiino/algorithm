@@ -19,18 +19,8 @@ class Solution {
         return sb.toString();
     }
 
-    public String solution2(String s) {
-        return s.chars()
-                .boxed()
-                .sorted((v1, v2) -> v2 - v1)
-                .collect(StringBuilder::new,
-                        StringBuilder::appendCodePoint,
-                        StringBuilder::append)
-                .toString();
-    }
-
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.solution2("gfedcbZ");
+        solution.solution("gfedcbZ");
     }
 }
