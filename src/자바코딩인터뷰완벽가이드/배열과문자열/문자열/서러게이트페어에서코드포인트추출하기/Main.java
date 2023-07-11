@@ -1,4 +1,4 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열.서러게이트페어에서코드포인트추출하기;
+package 자바코딩인터뷰완벽가이드.배열과문자열.문자열.서러게이트페어에서코드포인트추출하기;
 
 import java.util.ArrayList;
 import java.util.Collections;

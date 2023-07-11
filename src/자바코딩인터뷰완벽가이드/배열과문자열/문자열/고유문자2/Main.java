@@ -1,4 +1,4 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열.고유문자2;
+package 자바코딩인터뷰완벽가이드.배열과문자열.문자열.고유문자2;
 
 public class Main {
     private static final char A_CHAR = 'a';

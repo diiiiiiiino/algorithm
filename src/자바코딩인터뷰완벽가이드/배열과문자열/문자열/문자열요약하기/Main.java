@@ -1,4 +1,4 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열.문자열요약하기;
+package 자바코딩인터뷰완벽가이드.배열과문자열.문자열.문자열요약하기;
 
 public class Main {
     public static void main(String[] args) {

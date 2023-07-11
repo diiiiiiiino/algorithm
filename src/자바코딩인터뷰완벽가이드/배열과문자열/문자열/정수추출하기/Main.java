@@ -1,4 +1,4 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열.정수추출하기;
+package 자바코딩인터뷰완벽가이드.배열과문자열.문자열.정수추출하기;
 
 import java.util.ArrayList;
 import java.util.Collections;

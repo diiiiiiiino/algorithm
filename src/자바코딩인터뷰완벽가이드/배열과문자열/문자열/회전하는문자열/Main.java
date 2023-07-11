@@ -1,4 +1,4 @@
-package 자바코딩인터뷰완벽가이드.배열과문자열.회전하는문자열;
+package 자바코딩인터뷰완벽가이드.배열과문자열.문자열.회전하는문자열;
 
 import java.util.regex.Pattern;
 
