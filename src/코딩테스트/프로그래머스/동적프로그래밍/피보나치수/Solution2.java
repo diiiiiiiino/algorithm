@@ -1,4 +1,4 @@
-package 코딩테스트.프로그래머스.동적계획법.피보나치수;
+package 코딩테스트.프로그래머스.동적프로그래밍.피보나치수;
 
 import java.util.Arrays;
 

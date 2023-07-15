@@ -1,4 +1,4 @@
-package 코딩테스트.프로그래머스.동적계획법.정수삼각형;
+package 코딩테스트.프로그래머스.동적프로그래밍.정수삼각형;
 
 import java.util.Arrays;
 
