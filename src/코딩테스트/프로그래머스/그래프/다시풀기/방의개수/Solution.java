@@ -1,6 +1,5 @@
 package 코딩테스트.프로그래머스.그래프.다시풀기.방의개수;
 
-import javax.sound.midi.Soundbank;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -48,7 +47,7 @@ public class Solution {
 
                 Vertex u = vertices.get(id);
                 v.connectedVertices.add(u.id);
-                v.connectedVertices.add(v.id);
+                u.connectedVertices.add(v.id);
                 v = vertices.get(id);
             }
         }
