@@ -1,4 +1,4 @@
-package 코딩테스트.프로그래머스.이중우선순위큐;
+package 코딩테스트.프로그래머스.우선순위큐.이중우선순위큐;
 
 import java.util.PriorityQueue;
 
