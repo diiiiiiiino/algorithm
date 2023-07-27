@@ -1,4 +1,4 @@
-package 코딩테스트.프로그래머스.유니온파인드.섬연결하기;
+package 코딩테스트.프로그래머스.유니온파인드.다시풀기.섬연결하기;
 
 import java.util.Arrays;
 import java.util.Comparator;
