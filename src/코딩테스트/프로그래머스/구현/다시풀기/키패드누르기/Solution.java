@@ -1,4 +1,4 @@
-package 코딩테스트.프로그래머스.구현.키패드누르기;
+package 코딩테스트.프로그래머스.구현.다시풀기.키패드누르기;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
