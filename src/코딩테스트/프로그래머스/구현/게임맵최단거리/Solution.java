@@ -3,6 +3,9 @@ package 코딩테스트.프로그래머스.구현.게임맵최단거리;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * https://school.programmers.co.kr/learn/courses/30/lessons/1844
+ */
 class Solution {
     public int solution(int[][] maps) {
         int answer = 0;
