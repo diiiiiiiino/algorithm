@@ -19,7 +19,7 @@ public class Main {
             map.put(nuts[i], i);
         }
 
-        for(int i = 0; i < nuts.length; i++){
+        for(int i = 0; i < bolts.length; i++){
             char bolt = bolts[i];
 
             if(map.containsKey(bolt)){
