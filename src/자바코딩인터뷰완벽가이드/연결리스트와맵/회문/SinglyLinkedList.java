@@ -34,7 +34,6 @@ public final class SinglyLinkedList {
 
         Stack<Integer> firstHalf = new Stack<>();
 
-        // 연결 리스트의 왼쪽 절반이 스택에 쌓입니다.
         while (fastRunner != null && fastRunner.next != null) {
             firstHalf.push(slowRunner.data);
 
@@ -42,16 +41,13 @@ public final class SinglyLinkedList {
             fastRunner = fastRunner.next.next;
         }
 
-        // 요소 개수가 홀수라면 중간 노드를 건너 뛰어야 합니다.
         if (fastRunner != null) {
             slowRunner = slowRunner.next;
         }
 
-        // 스택에서 값을 꺼내 연결 리스트의 오른쪽 절반의 노드와 비교합니다.
         while (slowRunner != null) {
             int top = firstHalf.pop();
 
-            // 값이 일치하지 않으면 연결 리스트는 회문이 아닙니다.
             if (top != slowRunner.data) {
                 return false;
             }
