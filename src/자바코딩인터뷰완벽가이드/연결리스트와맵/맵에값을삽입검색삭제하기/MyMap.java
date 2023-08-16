@@ -124,5 +124,7 @@ public class MyMap<K, V> {
         map.remove("Alex");
 
         System.out.println(map);
+        System.out.println(map.keySet());
+        System.out.println(map.values());
     }
 }
