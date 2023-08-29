@@ -78,42 +78,40 @@ public class BinaryTree<T> {
     }
 
     private void printSpiralTwoStacks(Node node) {
-        if (node == null) {
+        if(node == null){
             return;
         }
 
-        Stack<Node> rl = new Stack<>();
         Stack<Node> lr = new Stack<>();
+        Stack<Node> rl = new Stack<>();
 
-        rl.push(node);
+        lr.push(node);
 
-        while (!rl.empty() || !lr.empty()) {
-            while (!rl.empty()) {
-                Node temp = rl.peek();
-                rl.pop();
+        while(!lr.isEmpty() || !rl.isEmpty()){
 
-                System.out.print(temp.element + " ");
+            while(!lr.isEmpty()){
+                Node node1 = lr.pop();
+                System.out.print(node1.element + " ");
 
-                if (temp.right != null) {
-                    lr.push(temp.right);
+                if(node1.left != null){
+                    rl.push(node1.left);
                 }
 
-                if (temp.left != null) {
-                    lr.push(temp.left);
+                if(node1.right != null){
+                    rl.push(node1.right);
                 }
             }
 
-            while (!lr.empty()) {
-                Node temp = lr.peek();
-                lr.pop();
+            while(!rl.isEmpty()){
+                Node node1 = rl.pop();
+                System.out.print(node1.element + " ");
 
-                System.out.print(temp.element + " ");
-
-                if (temp.left != null) {
-                    rl.push(temp.left);
+                if(node1.right != null){
+                    lr.push(node1.right);
                 }
-                if (temp.right != null) {
-                    rl.push(temp.right);
+
+                if(node1.left != null){
+                    lr.push(node1.left);
                 }
             }
         }
@@ -128,53 +126,50 @@ public class BinaryTree<T> {
     }
 
     private void printSpiralDeque(Node root) {
-        if (root == null) {
+        if(root == null){
             return;
         }
 
         Deque<Node> deque = new ArrayDeque<>();
         deque.addFirst(root);
+        boolean isOdd = false;
 
-        // 홀수 또는 짝수 레벨인지 확인
-        boolean oddEvenFlag = false;
+        while(!deque.isEmpty()){
+            int size = deque.size();
+            int i = 0;
 
-        while (!deque.isEmpty()) {
-            int nodesNo = deque.size();
+            if(isOdd){
+                while(i < size) {
+                    i++;
 
-            if (oddEvenFlag) {
-                while (nodesNo > 0) {
-                    Node currentNode = deque.pollFirst();
-                    System.out.print(currentNode.element + " ");
+                    Node node = deque.pollFirst();
+                    System.out.print(node.element + " ");
 
-                    if (currentNode.left != null) {
-                        deque.addLast(currentNode.left);
+                    if(node.left != null){
+                        deque.addLast(node.left);
                     }
 
-                    if (currentNode.right != null) {
-                        deque.addLast(currentNode.right);
+                    if(node.right != null){
+                        deque.addLast(node.right);
                     }
-
-                    nodesNo--;
                 }
             } else {
-                while (nodesNo > 0) {
-                    Node currentNode = deque.pollLast();
+                while(i < size) {
+                    i++;
+                    Node node = deque.pollLast();
+                    System.out.print(node.element + " ");
 
-                    System.out.print(currentNode.element + " ");
-
-                    if (currentNode.right != null) {
-                        deque.addFirst(currentNode.right);
+                    if(node.right != null){
+                        deque.addFirst(node.right);
                     }
 
-                    if (currentNode.left != null) {
-                        deque.addFirst(currentNode.left);
+                    if(node.left != null){
+                        deque.addFirst(node.left);
                     }
-
-                    nodesNo--;
                 }
             }
 
-            oddEvenFlag = !oddEvenFlag;
+            isOdd = !isOdd;
         }
     }
 
